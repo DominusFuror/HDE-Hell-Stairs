@@ -19,12 +19,13 @@ public class SceneChange : MonoBehaviour
     }
 
     AsyncOperation scene;
+    public AudioSource portalSound;
     public void LoadScene()
     {
 
 
-    
-   
+
+        portalSound.Play();
 
         this.GetComponent<Animator>().SetTrigger("LoadTr");
     }

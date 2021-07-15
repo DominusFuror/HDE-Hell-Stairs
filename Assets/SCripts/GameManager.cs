@@ -49,16 +49,21 @@ public class GameManager : MonoBehaviour
 
 
     public Text counter;
+    public AudioSource tick;
     IEnumerator Counter()
     {
         counter.gameObject.SetActive(true);
         counter.text = 3+"";
+        tick.Play();
         yield return new WaitForSeconds(0.5f);
         counter.text = 2 + "";
+        tick.Play();
         yield return new WaitForSeconds(0.5f);
         counter.text = 1 + "";
+        tick.Play();
         yield return new WaitForSeconds(0.5f);
         counter.text = "GO!";
+        tick.Play();
         yield return new WaitForSeconds(0.5f);
         counter.gameObject.SetActive(false);
         player.GetComponent<Rigidbody>().useGravity = true;

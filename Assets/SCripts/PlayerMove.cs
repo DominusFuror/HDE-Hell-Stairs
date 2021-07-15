@@ -47,10 +47,14 @@ public class PlayerMove : MonoBehaviour
 
     public Elements playerElement;
 
+
+    public AudioClip jump;
+    public AudioSource cubeSourse;
     public void Jump()
     {
         if (!isJump)
         {
+            cubeSourse.PlayOneShot(jump);
             StaticticSc.totalJumps++;
             isJump = true;
             this.GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpPower, 0));
@@ -66,7 +70,6 @@ public class PlayerMove : MonoBehaviour
     public Text yourScore;
 
 
-   
 
 
 
@@ -79,11 +82,13 @@ public class PlayerMove : MonoBehaviour
 
 
 
+    public AudioClip death;
     public void OnDeath()
     {
         ScoreScreen.SetActive(true);
         playerModel.SetActive(false);
         dieParticl.SetActive(true);
+        cubeSourse.PlayOneShot(death);
         yourScore.text = "You score:" + steps;
 
         StaticticSc.totalDies++;
@@ -124,8 +129,8 @@ public class PlayerMove : MonoBehaviour
             else
             {
 
-         
-                if(collision.collider != lastCollider)
+     
+                if (collision.collider != lastCollider)
                 {
                     steps++;
                     lastCollider = collision.collider;
